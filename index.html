@@ -1,102 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Bobo <3 – Pixel Flowers</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<title>Bobo <3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  margin:0;background:#000;height:100vh;display:flex;justify-content:center;align-items:center;color:#fff;font-family:sans-serif;overflow:hidden;
+}
+.scene{text-align:center;position:relative;padding:40px 20px 60px;}
+.title{font-size:2.4rem;margin-bottom:25px;text-shadow:0 0 10px #fff;}
+.bouquet{position:relative;width:260px;height:260px;margin:auto;filter:drop-shadow(0 0 25px #fff);}
+.flower{position:absolute;bottom:40px;width:80px;height:160px;image-rendering:pixelated;}
+.flower-1{left:20px;} .flower-2{left:90px;} .flower-3{right:20px;}
+.stem{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:4px;height:120px;background:#aaa;}
+.head{position:absolute;bottom:110px;left:50%;transform:translateX(-50%);width:72px;height:72px;}
+.pixel{position:absolute;width:20px;height:20px;background:#fff;box-shadow:0 0 15px #fff;}
+.petal-1{left:26px;top:4px;} .petal-2{left:4px;top:26px;} .petal-3{right:4px;top:26px;} .petal-4{left:26px;bottom:4px;} .center{left:26px;top:26px;background:#ddd;}
+.play-btn{
+  position:absolute;bottom:-90px;left:50%;transform:translateX(-50%);
+  background:#000;color:#fff;border:2px solid #fff;padding:14px 32px;
+  border-radius:10px;font-size:1.3rem;font-weight:bold;cursor:pointer;
+}
+</style>
+</head>
+<body>
 
-    body {
-      font-family: sans-serif;
-      background: #000;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+<div class="scene">
+  <h1 class="title">Bobo &lt;3</h1>
 
-    .scene {
-      position: relative;
-      text-align: center;
-      padding: 40px 20px;
-    }
+  <div class="bouquet">
 
-    .title {
-      font-size: 2.4rem;
-      margin-bottom: 30px;
-      text-shadow: 0 0 10px #fff, 0 0 25px #fff;
-    }
+    <div class="flower flower-1">
+      <div class="stem"></div>
+      <div class="head">
+        <div class="pixel petal-1"></div>
+        <div class="pixel petal-2"></div>
+        <div class="pixel petal-3"></div>
+        <div class="pixel petal-4"></div>
+        <div class="pixel center"></div>
+      </div>
+    </div>
 
-    .heart {
-      text-shadow: 0 0 10px #fff, 0 0 30px #fff;
-    }
+    <div class="flower flower-2">
+      <div class="stem"></div>
+      <div class="head">
+        <div class="pixel petal-1"></div>
+        <div class="pixel petal-2"></div>
+        <div class="pixel petal-3"></div>
+        <div class="pixel petal-4"></div>
+        <div class="pixel center"></div>
+      </div>
+    </div>
 
-    .bouquet {
-      position: relative;
-      width: 360px;
-      height: 260px;
-      margin: 0 auto;
-      filter: drop-shadow(0 0 25px rgba(255,255,255,0.7));
-    }
+    <div class="flower flower-3">
+      <div class="stem"></div>
+      <div class="head">
+        <div class="pixel petal-1"></div>
+        <div class="pixel petal-2"></div>
+        <div class="pixel petal-3"></div>
+        <div class="pixel petal-4"></div>
+        <div class="pixel center"></div>
+      </div>
+    </div>
 
-    .flower {
-      position: absolute;
-      bottom: 70px;
-      width: 120px;
-      height: 160px;
-    }
+    <button class="play-btn" id="play-btn">▶️ Play Song</button>
 
-    .flower--left { left: 0; }
-    .flower--center { left: 120px; }
-    .flower--right { right: 0; }
+  </div>
+</div>
 
-    .pixels {
-      position: absolute;
-      left: 50%;
-      top: 40px;
-      width: 120px;
-      height: 120px;
-      transform: translateX(-50%);
-    }
+<audio id="bg-music" loop muted>
+  <!-- يشغّل أياً كان اسم الملف -->
+  <source src="song.mp3" type="audio/mpeg">
+  <source src="song.mp3.mp3" type="audio/mpeg">
+</audio>
 
-    .pixel {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: #fff;
-      box-shadow: 0 0 8px #fff, 0 0 18px #fff;
-    }
+<script>
+const audio = document.getElementById("bg-music");
+const btn = document.getElementById("play-btn");
 
-    .stem {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      transform: translateX(-50%);
-      width: 10px;
-      height: 80px;
-      background: #aaa;
-      box-shadow: 0 0 12px #fff;
-    }
+btn.addEventListener("click", () => {
+  if (audio.paused) {
+    audio.muted = false;
+    audio.play();
+    btn.textContent = "⏸ Pause Song";
+  } else {
+    audio.pause();
+    btn.textContent = "▶️ Play Song";
+  }
+});
+</script>
 
-    .wrapper {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 220px;
-      height: 70px;
-      background: #111;
-      border-radius: 8px;
-      border: 1px solid #444;
-      box-shadow: 0 0 25px rgba(255,255,255,0.25);
-    }
-
-    /* زر تشغيل الأغنية */
-    .play-btn {
-      position: absolute;
-      bottom: -
-
+</body>
+</html>
